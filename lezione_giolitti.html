@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giolitti e l'Impresa di Libia (1911-1912)</title>
+    <style>
+        :root {
+            --bg-color: #f4f1ea;
+            --card-bg: #faf8f5;
+            --primary: #1f3a52;
+            --secondary: #8c2d19;
+            --text: #2c2c2c;
+            --border: #c8c2b4;
+            --success: #2e7d32;
+            --error: #c62828;
+        }
+        body { font-family: 'Georgia', serif; background-color: var(--bg-color); color: var(--text); padding: 20px; line-height: 1.6; }
+        header { text-align: center; border-bottom: 3px double var(--primary); padding-bottom: 15px; margin-bottom: 25px; }
+        h1 { color: var(--primary); margin-bottom: 5px; }
+        h2 { color: var(--secondary); border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-top: 35px; }
+        .container { max-width: 950px; margin: 0 auto; }
+        
+        .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; background: var(--card-bg); padding: 18px; border: 1px solid var(--border); border-radius: 6px; align-items: center; }
+        .text-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; background: var(--card-bg); padding: 15px; border: 1px solid var(--border); border-radius: 6px; }
+        .source-box { background: #fff; padding: 12px; border-left: 4px solid var(--secondary); font-size: 0.95rem; }
+        
+        .video-box { background: var(--card-bg); border: 1px solid var(--border); padding: 15px; border-radius: 6px; text-align: center; margin-top: 15px; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .branching-box { background: var(--card-bg); border: 2px solid var(--primary); padding: 20px; border-radius: 8px; margin-top: 15px; }
+        .branching-node-title { color: var(--secondary); font-weight: bold; margin-bottom: 10px; font-size: 1.1rem; }
+        .btn-option { display: block; width: 100%; text-align: left; background: var(--primary); color: white; border: none; padding: 12px; margin: 8px 0; cursor: pointer; border-radius: 4px; font-family: inherit; font-size: 0.95rem; transition: background 0.2s; }
+        .btn-option:hover { background: #132535; }
+
+        .flashcards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px; }
+        .card { height: 140px; perspective: 1000px; cursor: pointer; }
+        .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .card.flipped .card-inner { transform: rotateY(180deg); }
+        .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; padding: 10px; box-sizing: border-box; border: 1px solid var(--border); border-radius: 6px; }
+        .card-front { background-color: var(--primary); color: white; font-weight: bold; }
+        .card-back { background-color: var(--card-bg); transform: rotateY(180deg); font-size: 0.88rem; }
+        
+        .quiz-q { background: var(--card-bg); border: 1px solid var(--border); padding: 15px; margin-bottom: 15px; border-radius: 6px; }
+        label { display: block; margin: 6px 0; cursor: pointer; }
+        .feedback { margin-top: 8px; font-weight: bold; font-size: 0.9rem; padding: 6px; border-radius: 4px; }
+        .correct { color: var(--success); background: #e8f5e9; border: 1px solid #a5d6a7; }
+        .incorrect { color: var(--error); background: #ffebee; border: 1px solid #ef9a9a; }
+        
+        #result-box { text-align: center; background: var(--card-bg); border: 2px solid var(--secondary); padding: 20px; margin-top: 20px; border-radius: 8px; display: none; }
+        .submit-btn { background: var(--secondary); color: white; border: none; padding: 12px 25px; font-size: 1.1rem; cursor: pointer; border-radius: 5px; display: block; margin: 20px auto; }
+        
+        @media (max-width: 700px) {
+            .intro-grid, .text-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>L'Età Giolittiana e la Guerra di Libia (1911-1912)</h1>
+        <p><em>Modulo Didattico Interattivo per le Scuole Superiori</em></p>
+    </header>
+
+    <!-- INTRODUZIONE CON SVG AFFIANCATO -->
+    <section>
+        <h2>Inquadramento Storico</h2>
+        <div class="intro-grid">
+            <div>
+                <h3>Inquadramento: Giolitti e la Scelta Coloniale</h3>
+                <p>Nel settembre del 1911, il governo guidato da Giovanni Giolitti decise di dichiarare guerra all'Impero Ottomano per conquistare la Tripolitania e la Cirenaica (l'attuale Libia). Giolitti, tradizionalmente cauto in politica estera e concentrato sulle riforme interne, cedette alle fortissime pressioni dei gruppi nazionalisti, della finanza cattolica (interessata al Banco di Roma) e della stampa conservatrice. L'impresa coloniale fu concepita come un contrappeso moderato alle riforme sociali avanzate al Nord, ma finì per incrinare l'equilibrio politico e radicalizzare il dibattito pubblico italiano.</p>
+            </div>
+            <div style="text-align: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="auto" style="border-radius:4px; border:1px solid #c8c2b4;"><rect width="600" height="400" fill="#e2dcce"/><path d="M150 280 L250 180 L350 240 L450 140 L550 280 Z" fill="#b0a48e"/><circle cx="480" cy="100" r="40" fill="#d4c5a9"/><text x="50%" y="85%" font-family="Georgia" font-size="20" fill="#1f3a52" text-anchor="middle">Sbarco truppe a Tripoli (1911)</text></svg>
+                <p><small>Rappresentazione dello sbarco delle truppe italiane a Tripoli (Ottobre 1911).</small></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FONTI A CONFRONTO -->
+    <section>
+        <h2>1. Giudizi e Fonti a Confronto</h2>
+        <div class="text-grid">
+        <div class="source-box">
+            <h4>PRO: Giovanni Pascoli (1911)</h4>
+            <p><em>"La grande Proletaria si è mossa. Prima ella mandava altrove i suoi lavoratori... Ora l'Italia, la madre, ha trovato per i suoi figli una terra sua, bagnata dal nostro mare..."</em></p>
+            <hr>
+            <p><strong>Spiegazione:</strong> Pascoli giustifica l'impresa coloniale definendo l'Italia una 'nazione proletaria' che deve conquistare terre per dare lavoro ai propri emigranti senza che debbano servire Paesi stranieri.</p>
+        </div>
+        <div class="source-box">
+            <h4>CONTRO: Gaetano Salvemini (1911)</h4>
+            <p><em>"La Libia è uno scatolone di sabbia... Un'avventura militare che sottrarrà risorse preziose all'agricoltura, alle scuole e alle riforme urgenti di cui necessita il nostro Mezzogiorno."</em></p>
+            <hr>
+            <p><strong>Spiegazione:</strong> Salvemini e i socialisti riformisti denunciano l'inutilità economica del territorio libico e il rischio di impoverire ulteriormente il Sud Italia per favorire gli interessi di banche e militari.</p>
+        </div></div>
+    </section>
+
+    <!-- VIDEO CON TIMING DEDICATO -->
+    <section>
+        <h2>2. Documentario e Filmati d'Epoca</h2>
+        <div class="video-box">
+            <div class="video-container">
+                <iframe src="https://www.youtube-nocookie.com/embed/xiKcblHyeEU?start=140&end=420" title="Guerra di Libia - Immagini originali" allowfullscreen></iframe>
+            </div>
+            <p><small>Immagini d'epoca e canti patriottici della Guerra Italo-Libica (estratto impostato esattamente da 2:20 a 7:00).</small></p>
+        </div>
+    </section>
+
+    <!-- BRANCHING SCENARIO -->
+    <section>
+        <h2>3. Laboratorio Decisionale: Branching Scenario ("What If?")</h2>
+        <p>Prendi le decisioni nei panni di Giovanni Giolitti e osserva le conseguenze sulla storia d'Italia.</p>
+        <div class="branching-box" id="branching-container"></div>
+    </section>
+
+    <!-- FLASHCARDS -->
+    <section>
+        <h2>4. Flashcard dei Concetti Chiave</h2>
+        <div class="flashcards-grid">
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-front">Scatolone di sabbia</div>
+                <div class="card-back">Espressione di Gaetano Salvemini per evidenziare la presunta scarsa utilità agricola e mineraria della Libia.</div>
+            </div>
+        </div>
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-front">Patto Gentiloni (1913)</div>
+                <div class="card-back">Accordo informale tra giolittiani e cattolici: voto ai liberali in cambio di politiche sociali e sostegno alla scuola privata.</div>
+            </div>
+        </div>
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-front">Suffragio Universale Maschile</div>
+                <div class="card-back">Riforma del 1912: voto esteso a tutti i maschi con più di 30 anni (o 21 se alfabetizzati o ex militari).</div>
+            </div>
+        </div>
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-front">Nazionalismo (ANI)</div>
+                <div class="card-back">Movimento politico nato nel 1910 che promuoveva l'imperialismo e criticava il parlamentarismo giolittiano.</div>
+            </div>
+        </div>
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-front">Trattato di Losanna (1912)</div>
+                <div class="card-back">Accordo di pace con cui l'Impero Ottomano cedette all'Italia la Libia e le isole del Dodecaneso.</div>
+            </div>
+        </div>
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-front">Doppio Binario</div>
+                <div class="card-back">Politica di Giolitti: apertura e riforme sociali al Nord, sostegno clientelare e repressione al Sud.</div>
+            </div>
+        </div></div>
+    </section>
+
+    <!-- TEST CON FEEDBACK ISTANTANEO -->
+    <section>
+        <h2>5. Test di Verifica</h2>
+        <p><em>Rispondi alle domande per ricevere un feedback immediato su ogni singola scelta. Al termine, clicca per il calcolo del voto globale.</em></p>
+        <form id="quiz-form">
+            
+        <div class="quiz-q" id="q1">
+            <p>1. In quale intervallo temporale si svolse la guerra italo-turca per la Libia?</p>
+            <label><input type="radio" name="q1" value="A" onchange="checkInstantFeedback('q1', 'A')"> 1896-1898</label>
+<label><input type="radio" name="q1" value="B" onchange="checkInstantFeedback('q1', 'B')"> 1911-1912</label>
+<label><input type="radio" name="q1" value="C" onchange="checkInstantFeedback('q1', 'C')"> 1915-1918</label>
+
+            <div class="feedback" id="fb-q1"></div>
+        </div>
+        <div class="quiz-q" id="q2">
+            <p>2. Perché Giovanni Pascoli definì l'Italia 'La grande Proletaria'?</p>
+            <label><input type="radio" name="q2" value="A" onchange="checkInstantFeedback('q2', 'A')"> Perché l'Italia era una nazione povera i cui emigranti meritavano terre coloniali</label>
+<label><input type="radio" name="q2" value="B" onchange="checkInstantFeedback('q2', 'B')"> Perché l'Italia era guidata da un governo totalmente socialista</label>
+<label><input type="radio" name="q2" value="C" onchange="checkInstantFeedback('q2', 'C')"> Per denunciare gli scioperi operai nelle fabbriche del Nord</label>
+
+            <div class="feedback" id="fb-q2"></div>
+        </div>
+        <div class="quiz-q" id="q3">
+            <p>3. Chi definì la Libia uno 'scatolone di sabbia'?</p>
+            <label><input type="radio" name="q3" value="A" onchange="checkInstantFeedback('q3', 'A')"> Giovanni Giolitti</label>
+<label><input type="radio" name="q3" value="B" onchange="checkInstantFeedback('q3', 'B')"> Gaetano Salvemini</label>
+<label><input type="radio" name="q3" value="C" onchange="checkInstantFeedback('q3', 'C')"> Gabriele D'Annunzio</label>
+
+            <div class="feedback" id="fb-q3"></div>
+        </div>
+        <div class="quiz-q" id="q4">
+            <p>4. Quale importante riforma elettorale fu approvata nel 1912?</p>
+            <label><input type="radio" name="q4" value="A" onchange="checkInstantFeedback('q4', 'A')"> Il suffragio universale maschile e femminile</label>
+<label><input type="radio" name="q4" value="B" onchange="checkInstantFeedback('q4', 'B')"> Il suffragio universale maschile</label>
+<label><input type="radio" name="q4" value="C" onchange="checkInstantFeedback('q4', 'C')"> L'abolizione del voto segreto</label>
+
+            <div class="feedback" id="fb-q4"></div>
+        </div>
+        <div class="quiz-q" id="q5">
+            <p>5. Con quale trattato di pace si concluse la guerra d'Africa contro i Turchi?</p>
+            <label><input type="radio" name="q5" value="A" onchange="checkInstantFeedback('q5', 'A')"> Trattato di Losanna (1912)</label>
+<label><input type="radio" name="q5" value="B" onchange="checkInstantFeedback('q5', 'B')"> Trattato di Versailles (1919)</label>
+<label><input type="radio" name="q5" value="C" onchange="checkInstantFeedback('q5', 'C')"> Pace di Adua (1896)</label>
+
+            <div class="feedback" id="fb-q5"></div>
+        </div>
+        <div class="quiz-q" id="q6">
+            <p>6. Come reagì la corrente massimalista del PSI alla guerra di Libia?</p>
+            <label><input type="radio" name="q6" value="A" onchange="checkInstantFeedback('q6', 'A')"> Appoggiò le operazioni militari dell'esercito</label>
+<label><input type="radio" name="q6" value="B" onchange="checkInstantFeedback('q6', 'B')"> Sostenne la guerra ma solo per motivi umanitari</label>
+<label><input type="radio" name="q6" value="C" onchange="checkInstantFeedback('q6', 'C')"> Si oppose duramente e promosse scioperi contro l'imperialismo</label>
+
+            <div class="feedback" id="fb-q6"></div>
+        </div>
+        <div class="quiz-q" id="q7">
+            <p>7. Che cos'era il 'Patto Gentiloni' del 1913?</p>
+            <label><input type="radio" name="q7" value="A" onchange="checkInstantFeedback('q7', 'A')"> Un trattato commerciale con il Regno Unito</label>
+<label><input type="radio" name="q7" value="B" onchange="checkInstantFeedback('q7', 'B')"> Un accordo elettorale tra i liberali giolittiani e gli elettori cattolici</label>
+<label><input type="radio" name="q7" value="C" onchange="checkInstantFeedback('q7', 'C')"> Un patto militare d'alleanza con la Francia</label>
+
+            <div class="feedback" id="fb-q7"></div>
+        </div>
+        <div class="quiz-q" id="q8">
+            <p>8. Quale arcipelago fu occupato dagli italiani nel 1912 oltre la costa libica?</p>
+            <label><input type="radio" name="q8" value="A" onchange="checkInstantFeedback('q8', 'A')"> Le isole Baleari</label>
+<label><input type="radio" name="q8" value="B" onchange="checkInstantFeedback('q8', 'B')"> Il Dodecaneso (tra cui Rodi)</label>
+<label><input type="radio" name="q8" value="C" onchange="checkInstantFeedback('q8', 'C')"> Le isole Cicladi</label>
+
+            <div class="feedback" id="fb-q8"></div>
+        </div>
+        <div class="quiz-q" id="q9">
+            <p>9. Quale fu uno dei principali obiettivi politici di Giolitti nell'intraprendere la guerra?</p>
+            <label><input type="radio" name="q9" value="A" onchange="checkInstantFeedback('q9', 'A')"> Riconquistare il consenso dei nazionalisti e della finanza cattolica</label>
+<label><input type="radio" name="q9" value="B" onchange="checkInstantFeedback('q9', 'B')"> Sconfiggere definitivamente il Regno Unito</label>
+<label><input type="radio" name="q9" value="C" onchange="checkInstantFeedback('q9', 'C')"> Favorire l'indipendenza dei popoli arabi</label>
+
+            <div class="feedback" id="fb-q9"></div>
+        </div>
+        <div class="quiz-q" id="q10">
+            <p>10. Quale fu una delle conseguenze politiche a lungo termine dell'impresa?</p>
+            <label><input type="radio" name="q10" value="A" onchange="checkInstantFeedback('q10', 'A')"> Il rafforzamento del riformismo moderato</label>
+<label><input type="radio" name="q10" value="B" onchange="checkInstantFeedback('q10', 'B')"> La radicalizzazione del clima politico tra nazionalisti e socialisti rivoluzionari</label>
+<label><input type="radio" name="q10" value="C" onchange="checkInstantFeedback('q10', 'C')"> La rinuncia ad avere un esercito permanente</label>
+
+            <div class="feedback" id="fb-q10"></div>
+        </div>
+            <button type="button" class="submit-btn" onclick="checkFinalGrade()">Calcola Valutazione Finale</button>
+        </form>
+        <div id="result-box">
+            <h3 id="score-text"></h3>
+            <p id="grade-text" style="font-weight: bold; font-size: 1.2rem;"></p>
+            <p id="evaluation-text"></p>
+        </div>
+    </section>
+</div>
+
+<script>
+    const correctAnswers = {"q1": "B", "q2": "A", "q3": "B", "q4": "B", "q5": "A", "q6": "C", "q7": "B", "q8": "B", "q9": "A", "q10": "B"};
+    const feedbacks = {"q1": {"ok": "Esatto! La guerra si svolse tra il settembre 1911 e l'ottobre 1912.", "err": "Errato. La risposta corretta \u00e8 B (1911-1912)."}, "q2": {"ok": "Esatto! Us\u00f2 questo argomento per nobilitare l'espansionismo coloniale.", "err": "Errato. La risposta corretta \u00e8 A (si riferiva all'emigrazione e alla necessit\u00e0 di terre)."}, "q3": {"ok": "Esatto! Salvemini us\u00f2 questa espressione per denunciare l'inutilit\u00e0 dell'impresa.", "err": "Errato. La risposta corretta \u00e8 B (Gaetano Salvemini)."}, "q4": {"ok": "Esatto! La legge estese il voto a quasi tutti i cittadini maschi.", "err": "Errato. La risposta corretta \u00e8 B (suffragio universale maschile)."}, "q5": {"ok": "Esatto! Il trattato fu firmato nell'ottobre del 1912.", "err": "Errato. La risposta corretta \u00e8 A (Trattato di Losanna)."}, "q6": {"ok": "Esatto! La frazione radicale si oppose fermamente.", "err": "Errato. La risposta corretta \u00e8 C (opposizione dura e scioperi)."}, "q7": {"ok": "Esatto! Garant\u00ec l'appoggio dei cattolici al sistema giolittiano.", "err": "Errato. La risposta corretta \u00e8 B (accordo elettorale liberali-cattolici)."}, "q8": {"ok": "Esatto! L'Italia occup\u00f2 le 12 isole del Dodecaneso.", "err": "Errato. La risposta corretta \u00e8 B (il Dodecaneso)."}, "q9": {"ok": "Esatto! Serviva a ricucire i rapporti con conservatori e cattolici.", "err": "Errato. La risposta corretta \u00e8 A (recuperare il consenso della destra)."}, "q10": {"ok": "Esatto! La guerra indebol\u00ec la strategia del compromesso centrista.", "err": "Errato. La risposta corretta \u00e8 B (radicalizzazione del clima politico)."}};
+    const branchingNodes = {"0": {"titolo": "FASE 1: Settembre 1911 - La Pressione della Destra", "testo": "Sei il Presidente del Consiglio Giovanni Giolitti. La Francia sta occupando il Marocco e la destra nazionalista, sostenuta dal Banco di Roma e dalla stampa conservatrice, spinge per occupare la Libia ottomana. I socialisti minacciano lo sciopero generale se si far\u00e0 la guerra. Come agisci?", "opzioni": [{"testo": "A. Cedi alle pressioni: dichiara guerra all'Impero Ottomano per occupare la Tripolitania e la Cirenaica.", "next": "1"}, {"testo": "B. Cerca una via diplomatica con Costantinopoli: proponi un affitto economico della Libia senza intervento militare.", "next": "2"}, {"testo": "C. Rifiuta categoricamente ogni avventura coloniale e concentra il bilancio sul Mezzogiorno e sul suffragio.", "next": "3"}]}, "1": {"titolo": "FASE 2A: Ottobre 1911 - La Guerra si prolunga", "testo": "Hai dichiarato guerra! L'esercito italiano occupa la costa, ma all'interno le popolazioni arabe e berbere si alleano con i turchi dando vita a un'estenuante guerriglia. I costi finanziari impennano e il Partito Socialista \u00e8 in subbuglio. Come gestisci la crisi?", "opzioni": [{"testo": "1. Estendi il conflitto: ordina alla marina di occupare le isole del Dodecaneso nell'Egeo per bloccare i Turchi.", "next": "1_1"}, {"testo": "2. Avvia trattative segrete con i capi locali libici offrendo autonomia in cambio della resa.", "next": "1_2"}]}, "2": {"titolo": "FASE 2B: L'Opzione Diplomatica fallisce", "testo": "L'Impero Ottomano rifiuta la proposta di affitto e considera l'ultimatum una violazione della propria sovranit\u00e0. La stampa nazionalista in Italia ti accusa di vigliaccheria. La tua maggioranza parlamentare vacilla.", "opzioni": [{"testo": "1. Fai marcia indietro: abbandona la diplomazia e invia immediatamente la flotta militare.", "next": "1"}, {"testo": "2. Mantieni la posizione: chiedi la fiducia alla Camera proponendo una grande legge di riforma agraria per il Sud.", "next": "2_2"}]}, "3": {"titolo": "FASE 2C: Neutralit\u00e0 e Crisi di Governo", "testo": "Hai detto 'NO' alla guerra. I socialisti riformisti approvano la tua scelta, ma i conservatori, la finanza cattolica e i nazionalisti scendono in piazza scatenando disordini. Il Re ti convoca al Quirinale.", "opzioni": [{"testo": "1. Cedi al Re e ai nazionalisti: rassegna le dimissioni proponendo un governo militare.", "next": "3_1"}, {"testo": "2. Resisti: accelera subito l'approvazione del Suffragio Universale Maschile per spostare l'asse politico sugli elettori popolari.", "next": "3_2"}]}, "1_1": {"titolo": "ESITO STORICO REALE (1912)", "testo": "L'occupazione del Dodecaneso piega l'Impero Ottomano, che firma la Pace di Losanna (1912). Hai vinto la guerra e accontentato i conservatori! Tuttavia, hai distrutto la mediazione con i socialisti: la corrente massimalista prende la guida del PSI e il clima politico si radicalizza.", "opzioni": [{"testo": "\ud83d\udd04 Ricomincia lo scenario decisionale", "next": "0"}]}, "1_2": {"titolo": "ESITO CONTROFATTUALE: Stallo e Logoramento", "testo": "I capi arabi rifiutano gli accordi parziali. La guerra si trasforma in un pantano privo di vittorie decisive. Il Parlamento boccia i nuovi crediti di guerra e sei costretto a dimetterti.", "opzioni": [{"testo": "\ud83d\udd04 Ricomincia lo scenario decisionale", "next": "0"}]}, "2_2": {"titolo": "ESITO CONTROFATTUALE: Caduta del Sistema Giolittiano", "testo": "La Camera, sotto la pressione della piazza nazionalista e dei conservatori, sfiducia il tuo governo. Nasce un esecutivo reazionario che approva la guerra e reprime i sindacati al Sud.", "opzioni": [{"testo": "\ud83d\udd04 Ricomincia lo scenario decisionale", "next": "0"}]}, "3_1": {"titolo": "ESITO CONTROFATTUALE: Svolta Autoritaria Anticipata", "testo": "Le tue dimissioni aprono la strada a un governo conservatore della destra che dichiara guerra in Africa e sospende le libert\u00e0 sindacali in Italia.", "opzioni": [{"testo": "\ud83d\udd04 Ricomincia lo scenario decisionale", "next": "0"}]}, "3_2": {"titolo": "ESITO CONTROFATTUALE: L'Italia delle Riforme Popolari", "testo": "Riesci a far approvare il suffragio universale senza fare la guerra! Alle elezioni le masse popolari votano in massa socialisti e cattolici, trasformando l'Italia in una democrazia sociale avanzata.", "opzioni": [{"testo": "\ud83d\udd04 Ricomincia lo scenario decisionale", "next": "0"}]}};
+
+    function checkInstantFeedback(qId, selectedVal) {
+        const feedbackEl = document.getElementById('fb-' + qId);
+        if (selectedVal === correctAnswers[qId]) {
+            feedbackEl.textContent = "✓ " + feedbacks[qId].ok;
+            feedbackEl.className = "feedback correct";
+        } else {
+            feedbackEl.textContent = "✗ " + feedbacks[qId].err;
+            feedbackEl.className = "feedback incorrect";
+        }
+    }
+
+    function renderBranchingNode(nodeId) {
+        const container = document.getElementById('branching-container');
+        const node = branchingNodes[nodeId];
+        
+        let html = `<div class="branching-node-title">${node.titolo}</div>`;
+        html += `<p>${node.testo}</p>`;
+        
+        node.opzioni.forEach(opt => {
+            html += `<button class="btn-option" onclick="renderBranchingNode('${opt.next}')">${opt.testo}</button>`;
+        });
+        
+        container.innerHTML = html;
+    }
+
+    renderBranchingNode('0');
+
+    function checkFinalGrade() {
+        let score = 0;
+        let answeredCount = 0;
+
+        for (let i = 1; i <= 10; i++) {
+            let qKey = 'q' + i;
+            let selected = document.querySelector(`input[name="${qKey}"]:checked`);
+            if (selected) {
+                answeredCount++;
+                if (selected.value === correctAnswers[qKey]) {
+                    score++;
+                }
+            }
+        }
+
+        const resultBox = document.getElementById('result-box');
+        resultBox.style.display = "block";
+        document.getElementById('score-text').textContent = `Risposte esatte: ${score} su 10 (Completate: ${answeredCount}/10)`;
+        
+        const gradeText = document.getElementById('grade-text');
+        const evalText = document.getElementById('evaluation-text');
+        
+        if (score < 4) {
+            gradeText.textContent = "Voto: INSUFFICIENTE (sotto al 4)";
+            gradeText.style.color = "var(--error)";
+            evalText.textContent = "Esegui un ripasso generale del contesto storico, delle fonti e delle flashcard prima di ripetere la prova.";
+        } else if (score <= 6) {
+            gradeText.textContent = "Voto: MEDIOCRE (fino al 6)";
+            gradeText.style.color = "#d97706";
+            evalText.textContent = "Hai una comprensione di base ma parziale. Approfondisci le conseguenze politiche dell'impresa coloniale.";
+        } else if (score <= 8) {
+            gradeText.textContent = "Voto: DISCRETO (fino all'8)";
+            gradeText.style.color = "#1d4ed8";
+            evalText.textContent = "Buona preparazione e capacità critica nell'analisi degli eventi dell'Età Giolittiana.";
+        } else {
+            gradeText.textContent = "Voto: BUONO / ECCELLENTE (oltre l'8)";
+            gradeText.style.color = "var(--success)";
+            evalText.textContent = "Eccellente! Dimostri una padronanza completa delle fonti, del dibattito e delle dinamiche storiche.";
+        }
+        resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
